@@ -1,9 +1,0 @@
-console.log('utils')
-
-const name = 'Jeff'
-
-const add = function (a, b) {
-    return a + b;
-}
-
-module.exports = add
