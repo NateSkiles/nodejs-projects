@@ -1,3 +1,5 @@
+// A test file to learn the basics of importing and using modules
+
 const validator = require('validator');
 const getNotes = require('./notes.js');
 const chalk = require('chalk');
