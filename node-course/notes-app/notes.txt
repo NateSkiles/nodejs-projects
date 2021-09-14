@@ -1,2 +1,0 @@
-My name is Nate
-And I'm learning node.js
