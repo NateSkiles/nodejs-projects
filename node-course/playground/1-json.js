@@ -1,27 +1,4 @@
 const fs = require('fs')
-// const book = {
-//     title: 'Lord of the Rings',
-//     author: 'J.R.R Tolkien'
-// }
-
-
-// Write stringify'd json data to a file
-// const bookJSON = JSON.stringify(book)
-// fs.writeFileSync('1-join.json', bookJSON)
-
-
-// Parse json object into JS object
-// const parsedData = JSON.parse(bookJSON)
-// console.log(parsedData.author)
-
-// const dataBuffer = fs.readFileSync('1-join.json')
-// console.log(dataBuffer)
-
-// Convert Buffer to string and then parse JSON to data
-// const dataJSON = dataBuffer.toString()
-// const data = JSON.parse(dataJSON)
-// console.log(data.title)
-
 
 // Challenge: Work with JSON and the file system 
 
