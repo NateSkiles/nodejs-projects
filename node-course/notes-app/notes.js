@@ -1,5 +1,4 @@
 const { default: chalk } = require('chalk');
-const { count } = require('console');
 const fs = require('fs')
 
 const addNote = (title, body) => {
