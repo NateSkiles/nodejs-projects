@@ -5,7 +5,7 @@ const getNotes = require('./notes.js');
 const chalk = require('chalk');
 
 
-console.log(process.argv[2])
+console.log(process.argv)
 
 
 
@@ -19,7 +19,7 @@ console.log(process.argv[2])
 // console.log(chalk`
 //         There are {bold 5289 feet in a mile.
 //         In {bold ${miles} miles}, there are {green.bold ${calculateFeet(miles)}} feet}.
-//         `);
+//         `);ds
 
 
 

@@ -3,7 +3,7 @@ const { describe } = require('yargs');
 const yargs = require('yargs')
 const getNotes = require('./notes.js')
 // const command = process.argv[2]
-
+// console.log(yargs.argv)
 // Version
 yargs.version('1.1.0')
 
@@ -44,7 +44,7 @@ yargs.command({
     command: 'list',
     describe: 'List notes',
     handler: function() {
-        console.log('Listing notes')
+        console.log(getNotes());
     }
 })
 
@@ -58,7 +58,7 @@ yargs.command({
 })
 
 
-// Parse the arguments
+// Parse the arguments to run the program
 yargs.parse()
 
 
