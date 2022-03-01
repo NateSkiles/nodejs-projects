@@ -1,10 +1,8 @@
-const chalk = require('chalk');
-const { describe } = require('yargs');
+const chalk = require('chalk')
 const yargs = require('yargs')
-const getNotes = require('./notes.js')
-// const command = process.argv[2]
-// console.log(yargs.argv)
-// Version
+const notes = require('./notes.js')
+
+// Customize yargs version
 yargs.version('1.1.0')
 
 // Create add command
@@ -19,57 +17,46 @@ yargs.command({
             type: 'string'
         },
         // Add arg
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        },
         body: {
             describe: 'Note body',
             demandOption: true,
             type: 'string'
         }
     },
-    handler: function(argv) {
-        console.log('Title: ' + argv.title + '\nBody: ' + argv.body)
-    }
+    handler: (argv) => notes.addNote(argv.title, argv.body)
 })
 
 // Create remove command
 yargs.command({
     command: 'remove',
     describe: 'Remove a note',
-    handler: function() {
-        console.log('Remove a note')
-    }
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: (argv) => notes.removeNote(argv.title)
 })
 
 // Create list command
 yargs.command({
     command: 'list',
-    describe: 'List notes',
-    handler: function() {
-        console.log(getNotes());
-    }
+    describe: 'List your notes',
+    handler: () => console.log('Listing out all notes')
 })
 
 // Create read command
 yargs.command({
     command: 'read',
     describe: 'Read a note',
-    handler: function() {
-        console.log('Read a note')
-    }
+    handler: () => console.log('Reading a note')
 })
 
-
-// Parse the arguments to run the program
 yargs.parse()
-
-
-
-// console.log(yargs.argv)
-
-// console.log(process.argv)
-
-// if (command === 'add') {
-//     console.log('Adding Note')
-// }
-// else if (command === 'remove') {
-//     console.log('Removing note!')
-// }
