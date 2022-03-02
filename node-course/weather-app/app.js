@@ -8,10 +8,10 @@ const WS_TOKEN = process.env.API_KEY_WS
 const MB_TOKEN = process.env.API_KEY_MB
 
 // API Call
-const query = '45.5152,-122.6784&units=f'
-const location = 'Portland'
-const weather_url = `http://api.weatherstack.com/current?access_key=${WS_TOKEN}&query=${query}`
-const location_url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json?limit=1&access_token=${MB_TOKEN}`
+const query_latlong = '45.5152,-122.6784&units=f'
+const query_location = 'Portland'
+const weather_url = `http://api.weatherstack.com/current?access_key=${WS_TOKEN}&query=${query_latlong}`
+const location_url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${query_location}.json?limit=1&access_token=${MB_TOKEN}`
 
 const location_options = {
     url: location_url,
