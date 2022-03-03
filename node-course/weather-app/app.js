@@ -32,7 +32,7 @@ request(location_options, (err, res) => {
         console.log('No locations found, try searching for a new location.')
     } else {
         let data = res.body.features[0]
-        console.log(`${location}'s location:\n\tLat: ${data.center[1]}\n\tLong: ${data.center[0]}`)
+        console.log(`${data.location}'s location:\n\tLat: ${data.center[1]}\n\tLong: ${data.center[0]}`)
     }
 })
 
