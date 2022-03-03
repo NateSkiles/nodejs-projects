@@ -7,9 +7,9 @@ const API_KEY = process.env.API_KEY_WS
 
 const forecast = (lat, long, callback) => {
     // API Call
-    const latLong = encodeURIComponent(`${lat},${long}`)
+    const latLong = `${lat},${long}`
     const units = 'f'
-    const url = `http://api.weatherstack.com/current?access_key=${API_KEY}&query=${latLong}units=${units}`
+    const url = `http://api.weatherstack.com/current?access_key=${API_KEY}&query=${latLong}&units=${units}`
 
     const options = {
         url: url,
@@ -27,7 +27,10 @@ const forecast = (lat, long, callback) => {
                     name: location.name,
                     region: location.region,
                     description: current.weather_descriptions[0],
+                    temperature: current.temperature,
                     feelsLike: current.feelslike,
+                    precip: current.precip,
+                    cloudCover: current.cloudcover,
                     localTime: moment(location.localtime).format('LT')
                 }
             )
