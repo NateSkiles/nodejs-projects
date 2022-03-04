@@ -11,19 +11,20 @@ const geocode = (location, callback) => {
     const query = encodeURIComponent(location)
     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?limit=1&access_token=${API_KEY}`
     const options = {
-        url: url,
+        url,
         json: true
     }
 
-    request(options, (err, res) => {
+    request(options, (err, { body }) => {
+        const data = body.features
         if (err) {
             callback('Unable to connect to location service. 🙁', undefined)
-        } else if (res.body.features.length === 0) {
+        } else if (data.length === 0) {
             callback('No locations found, try searching for a new location.', undefined)
         } else {
             callback(undefined, {
-                longitude: res.body.features[0].center[0],
-                latitude: res.body.features[0].center[1]
+                longitude: data[0].center[0],
+                latitude: data[0].center[1]
             })
         }
     })

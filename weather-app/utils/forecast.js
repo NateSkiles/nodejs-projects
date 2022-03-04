@@ -12,27 +12,28 @@ const forecast = (lat, long, callback) => {
     const url = `http://api.weatherstack.com/current?access_key=${API_KEY}&query=${latLong}&units=${units}`
 
     const options = {
-        url: url,
+        url,
         json: true
     }
-    request(options, (err, res) => {
+    request(options, (err, { body }) => {
         if (err) {
             callback('Unable to connect to weather service. 🙁');
-        } else if (res.body.error) {
+        } else if (body.error) {
             callback('Unable to find location 🕵️‍♂️');
         } else {
-            let current = res.body.current
-            let location = res.body.location
+            let { name, region } = body.location
+            let { weather_descriptions, temperature, feelslike: feelsLike, precip, cloudcover: cloudCover, localtime } = body.current
+
             callback(undefined, {
-                    name: location.name,
-                    region: location.region,
-                    description: current.weather_descriptions[0],
-                    temperature: current.temperature,
-                    feelsLike: current.feelslike,
-                    precip: current.precip,
-                    cloudCover: current.cloudcover,
-                    localTime: moment(location.localtime).format('LT')
-                }
+                name,
+                region,
+                description: weather_descriptions[0],
+                temperature,
+                feelsLike,
+                precip,
+                cloudCover,
+                localTime: moment(localtime).format('LT')
+            }
             )
         }
     })
