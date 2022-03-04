@@ -6,9 +6,9 @@ const API_KEY = process.env.API_KEY_MB
 
 
 
-const geocode = (address, callback) => {
+const geocode = (location, callback) => {
     // Encode to address to URI
-    const query = encodeURIComponent(address)
+    const query = encodeURIComponent(location)
     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?limit=1&access_token=${API_KEY}`
     const options = {
         url: url,
