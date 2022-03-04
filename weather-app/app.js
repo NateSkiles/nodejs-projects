@@ -12,15 +12,13 @@ if (!location) {
             return console.log(err);
         }
 
-        forecast(latitude, longitude, (err, { name, region, description, temperature, feelsLike, localTime }) => {
+        forecast(latitude, longitude, (err, data) => {
             if (err) {
                 return console.log(err);
             }
             //console.log(`Currently in ${location.name} ${location.region}:\n\tWeather: ${current.weather_descriptions[0]}\n\tTemp: ${current.temperature}℉ and feels like ${current.feelslike}℉\n\tLocal time is: ${moment(location.localtime).format('LT')}`);
 
-            console.log(
-                `Currently in ${name}, ${region}:\n\tWeather: ${description}\n\tTemp: ${temperature}℉ and feels like ${feelsLike}℉\n\tLocal time is: ${localTime}`
-            );
+            console.log(data);
         })
     })
 

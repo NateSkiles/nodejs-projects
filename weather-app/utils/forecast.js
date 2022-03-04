@@ -12,7 +12,7 @@ const forecast = (lat, long, callback) => {
     const url = `http://api.weatherstack.com/current?access_key=${API_KEY}&query=${latLong}&units=${units}`
 
     const options = {
-        url,
+                  url,
         json: true
     }
     request(options, (err, { body }) => {
@@ -22,19 +22,18 @@ const forecast = (lat, long, callback) => {
             callback('Unable to find location 🕵️‍♂️');
         } else {
             let { name, region } = body.location
-            let { weather_descriptions, temperature, feelslike: feelsLike, precip, cloudcover: cloudCover, localtime } = body.current
+            let { weather_descriptions: description, temperature, feelslike: feelsLike, localtime } = body.current
+            
+            let localTime = moment(localtime).format('LT')
+            let conjunction
 
-            callback(undefined, {
-                name,
-                region,
-                description: weather_descriptions[0],
-                temperature,
-                feelsLike,
-                precip,
-                cloudCover,
-                localTime: moment(localtime).format('LT')
+            if (Math.abs(temperature - feelsLike) > 8) {
+                conjunction = 'but'
+            } else {
+                conjunction = 'and'
             }
-            )
+
+            callback(undefined, `Currently in ${name}, ${region} the weather is ${description[0]} with a temperature of${temperature}℉ ${conjunction} feels like ${feelsLike}℉\nThe Local time is: ${localTime}`)
         }
     })
 }
