@@ -7,7 +7,7 @@ const location = process.argv.splice(2).join(' ')
 if (!location) {
     console.log('Please enter a valid location.');
 } else {
-    geocode(location, (err, { latitude, longitude }) => {
+    geocode(location, (err, { latitude, longitude } = {}) => {
         if (err) {
             return console.log(err);
         }
