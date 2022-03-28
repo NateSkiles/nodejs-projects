@@ -22,7 +22,7 @@ weatherFrom.addEventListener('submit', (e) => {
                 let { name, region, description, temperature, conjunction, feelsLike, localTime } = body.data
                 console.log(body.data)
                 locationMessage.textContent = `${name}, ${region}`
-                messageOut.textContent = `The weather is ${description} with a temperature of ${temperature} ℉ ${conjunction} feels like ${feelsLike} ℉\n\nThe local time is ${localTime}`
+                messageOut.textContent = `The weather is ${description} with a temperature of ${temperature}℉ ${conjunction} feels like ${feelsLike}℉The local time is ${localTime}`
             }
         })
     })
