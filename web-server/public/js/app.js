@@ -12,7 +12,7 @@ weatherFrom.addEventListener('submit', (e) => {
     locationMessage.textContent = ''
     messageOut.textContent = "Loading..."
 
-    fetch(`http://localhost:3000/weather?address=${searchLocation}`).then((response) => {
+    fetch(`/weather?address=${searchLocation}`).then((response) => {
         response.json().then((body) => {
             if (body.error) {
                 console.log(body, error)
