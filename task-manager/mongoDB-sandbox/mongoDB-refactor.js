@@ -5,7 +5,7 @@
 // 2. Setup the callback to handle error & print result IDs
 // 3. Run the script
 
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId } = require('mongodb');
 
 // Connection URL
 const url = 'mongodb://localhost:27017';
@@ -13,6 +13,13 @@ const client = new MongoClient(url);
 
 // DB Name
 const dbName = 'task-manager';
+
+// Create an object ID
+// const id = new ObjectId();
+
+// console.log(id.id); // Hex 12-byte value
+// console.log(id.toString()); // String
+// console.log(id.getTimestamp()); // createdAt timestamp (UTC)
 
 async function main() {
     // Connect to server
@@ -39,7 +46,7 @@ async function main() {
 
     console.log('Inserted documents =>', insertResult);
 
-    return ('done. ');
+    return ('done. ✅');
 }
 
 main()
