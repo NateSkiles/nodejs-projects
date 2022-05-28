@@ -25,13 +25,30 @@
 //     console.log(data)
 // })
 
-function add(a, b, callback) {
+// function add(a, b, callback) {
+//     setTimeout(() => {
+//         let sum = a + b
+//         callback(sum)
+//     }, 2000)
+// }
+
+// add(1, 4, (sum) => {
+//     console.log(sum)
+// })
+
+
+
+const doWorkCallback = (callback) => {
     setTimeout(() => {
-        let sum = a + b
-        callback(sum)
+        // callback('Error ❌', undefined)
+        callback(undefined, { name: 'Nate'})
     }, 2000)
 }
 
-add(1, 4, (sum) => {
-    console.log(sum)
+doWorkCallback((err, res) => {
+    if (err) {
+        return console.log(err)
+    }
+    console.log(res)
+
 })
