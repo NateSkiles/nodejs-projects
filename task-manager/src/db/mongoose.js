@@ -1,48 +1,77 @@
 const mongoose = require('mongoose')
+const validator = require('validator');
 
-// mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api')
-
-// const User = mongoose.model('User', {
-//     name: {
-//         type: String
-//     },
-//     age: {
-//         type: Number
-//     }
-// })
-
-// const me = new User({
-//     name: 'Nate',
-//     age: 'test'
-// })
-
-// me.save().then((result) => {
-//     console.log(me);
-// }).catch((err) => {
-//     console.log('Error!', err);
-// })
-
-// 
-// Create a modal for tasks
-// 
-// Define the model with description and completed fields
-// Create a new instance of the model
-// Save the model to the database
 mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api')
 
-const Task = mongoose.model('Task', {
-    description: {
-        type: String
+const User = mongoose.model('User', {
+    name: {
+        type: String,
+        required: true,
+        trim: true
     },
-    completed: {
-        type: Boolean
+    age: {
+        type: Number,
+        default: null,
+        validate(value) {
+            if (value < 0) {
+                throw new Error('Age must be a positive number')
+            }
+        }
+    },
+    email: {
+        type: String,
+        required: true,
+        trim: true,
+        lowercase: true,
+        validate(value) {
+            if (!validator.isEmail(value)) {
+                throw new Error('Invalid email.')
+            }
+        }
+    },
+    password: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 7,
+        validate(value) {
+            if (value.toLowerCase().includes('password')) {
+                throw new Error('Password cannot contain the word \'password\'')
+            }
+        }
     }
 })
 
-const task = new Task({ description: 'build task api using mongoose', completed: false })
+const Task = mongoose.model('Task', {
+    description: {
+        type: String,
+        required: true
+    },
+    completed: {
+        type: Boolean,
+        trim: true,
+        default: false
+    }
+})
 
-task.save().then((result) => {
-    console.log(task);
-}).catch((err) => {
-    console.log(err);
-});
+// const myUser = new User({
+//     name: 'Nate',
+//     age: 27,
+//     email: 'projects@nateskiles.io',
+//     password: 'PaSsWord123'
+// })
+
+
+// myUser.save().then((result) => {
+//     console.log(myUser);
+// }).catch((err) => {
+//     console.log(err);
+// });
+
+const myTask = new Task({
+    description: 'Learn mongoose.js'
+})
+
+myTask.save()
+    .then(() => console.log(myTask))
+    .catch((err) => console.log(err))
