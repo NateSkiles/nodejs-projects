@@ -1,0 +1,16 @@
+{
+  "name": "promise-chaining",
+  "version": "1.0.0",
+  "description": "",
+  "main": "promise-chaining.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^6.3.5",
+    "validator": "^13.7.0"
+  }
+}
